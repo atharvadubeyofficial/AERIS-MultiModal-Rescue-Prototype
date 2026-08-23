@@ -1,0 +1,24 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Only the numpy/opencv-only logic modules are unit tested in CI
+      # (fusion, mission, hazard, sonar). Detector.py needs ultralytics/torch,
+      # which is exercised manually with real UAV footage, not in CI.
+      - name: Install lightweight test dependencies
+        run: pip install numpy opencv-python-headless pytest
+
+      - name: Run tests
+        run: pytest tests/ -v

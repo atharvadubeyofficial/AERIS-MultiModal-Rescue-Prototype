@@ -128,6 +128,9 @@ while st.session_state.running:
             d.metric("Sonar*", f"{critical['sonar_clearance']:.0%}")
             e.metric("Fusion", f"{critical['score']:.1f}%")
             st.success(mission_action(critical))
+    else:
+        target_slot.empty()
+
 
     map_slot.image(mission_map_image(frame.shape[1], frame.shape[0], ranked),
                    channels="RGB", use_container_width=True)

@@ -56,7 +56,7 @@ if stop:
     st.session_state.running = False
 
 if not st.session_state.running:
-    st.info("Configure the mission and press START MISSION.")
+    st.info("Team Infitech - Configure the mission and press START MISSION.")
     st.markdown("**UAV stream → AI perception → hazard assessment → sensor fusion → rescue priority → mission action**")
     st.stop()
 
